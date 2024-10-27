@@ -1,0 +1,25 @@
+1. open 2 terminals
+2. mysql -u root -pcloudera
+3. show databases;
+
+
+4. sqoop list-databases –connect jdbc:mysql://quickstart:3306/ –password cloudera –username root;
+5. sqoop list-tables –connect jdbc:mysql://quickstart:3306/retail_db –password cloudera –username root;
+6. sqoop import –connect jdbc:mysql://quickstart:3306/retail_db –password cloudera –username root –table departments;
+7. hdfs dfs -ls
+8. hdfs dfs -ls departments
+9. hdfs dfs -cat /user/cloudera/departments/part*
+
+
+10. use retail_db;
+11. show tables;
+12. Select * from departments;
+
+
+13. sqoop import –connect jdbc:mysql://quickstart:3306/retail_db –password cloudera –username root –table departments –target-dir /user/cloudera/department1;
+14. hdfs dfs -ls
+15. hdfs dfs -ls department1
+16. sqoop import –connect jdbc:mysql://quickstart:3306/retail_db –password cloudera –username root –table departments –where “department_id>4” –target-dir /user/cloudera/department1;
+17. hdfs dfs -cat /user/cloudera/department2/part*
+18. hdfs dfs -cat /user/cloudera/department1/part*
+19. sqoop export –connect jdbc:mysql://quickstart:3306/retail_db –password cloudera –username root –table departments –export-dir /user/cloudera/department1;  (ERROR)
